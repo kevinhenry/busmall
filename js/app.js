@@ -52,7 +52,7 @@ function renderGoats() {
   allGoats[secondGoatIndex].views++;
 }
 
-functon renderResults(){
+function renderResults() {
   let myList = document.quarySelector('ul');
   for (let i = 0; i < allGoats.length; i++) {
     let li = document.createElement('li');
@@ -83,7 +83,7 @@ function handleClick(event) {
 
 }
 
-function handleButtonClick(event) { //disable-eslint-line 
+function handleButtonClick(event) { //eslint-disable-line 
 
   if (totalClicks === clicksAllowed) {
     renderResults();
