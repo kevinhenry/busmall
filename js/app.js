@@ -94,4 +94,4 @@ renderGoats();
 
 
 myContainer.addEventLister('click', handleClick);
-myButton.addEventListener('click', handleBuuttonClick);
+myButton.addEventListener('click', handleButtonClick);
