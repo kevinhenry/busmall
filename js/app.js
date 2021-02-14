@@ -2,86 +2,114 @@
 
 // Global Variables
 let totalClicks = 0;
-let clicksAllowed = 3;
-let allGoats = [];
+let clicksAllowed = 25;
+let allProducts = [];
+// let myContainer = document.querySelector('section');
+let myContainer = document.getElementById('imgContainer');
+let indexArray = [];
+
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:nth-child(3)');
-let myContainer = document.querySelector('section');
+
 let myButton = document.querySelector('div');
 
-function Goat(name, fileExtension = 'jpg') {
+function Product(name, fileExtension = 'jpg') {
   this.name = name;
   this.src = `img/${name}.${fileExtension}`;
   this.views = 0;
   this.clicks = 0;
-  allGoats.push(this);
+  allProducts.push(this);
 }
 
-new Goat('bunny-goat', 'png');
-new Goat('cool-goat');
-new Goat('cruisin-goat');
-new Goat('float-your-goat');
-new Goat('goat-out-of-hand');
-new Goat('kissing-goat');
-new Goat('lucky-goat');
-new Goat('sassy-goat');
-new Goat('smiling-goat');
-new Goat('sweater-goat');
+new Product('bag');
+new Product('banana');
+new Product('bathroom');
+new Product('boots');
+new Product('breakfast');
+new Product('bubblegum');
+new Product('chair');
+new Product('cthulhu');
+new Product('dog-duck');
+new Product('dragon');
+new Product('pen');
+new Product('pet-sweep');
+new Product('scissors');
+new Product('shark');
+new Product('sweep', 'png');
+new Product('tauntaun');
+new Product('unicorn');
+new Product('usb', 'gif');
+new Product('water-can');
+new Product('wine-glass');
 
 function getRandomIndex() {
-  return Math.floor(Math.random() * allGoats.length);
+  return Math.floor(Math.random() * allProducts.length);
 }
 
-function renderGoats() {
-  let firstGoatIndex = getRandomIndex();
-  let secondGoatIndex = getRandomIndex();
-  let thirdGoatIndex = getRandomIndex();
+// function renderProducts() {
+function populateIndexArray() {
+  while (indexArray.length < 3) {
+    let randomIndex = getRandomIndex();
+    while (!indexArray.includes(randomIndex)) {
+      indexArray.push(randomIndex);
+    }
+  }
+}
+
+function renderProduct() {
+  populateIndexArray();
+  let firstProductIndex = indexArray.pop();
+  let secondProductIndex = indexArray.pop();
+  let thirdProductIndex = indexArray.pop();
+  // let firstProductIndex = getRandomIndex();
+  // let secondProductIndex = getRandomIndex();
+  // let thirdProductIndex = getRandomIndex();
   //  in lab today I recommend using an array.
   // maybe name itindexArray
   // check to see if the index is included in that array
   // pop those results from the array or shift?  maybe?
-  while (firstGoatIndex === secondGoatIndex) {
-    secondGoatIndex = getRandomIndex();
-  }
+  // while (firstProductIndex === secondProductIndex === thirdProductIndex) {
+  // thirdProductIndex = getRandomIndex();
 
-  imageOne.src = allGoats[firstGoatIndex].src;
-  imageOne.title = allGoats[firstGoatIndex].name;
-  allGoats[firstGoatIndex].views++;
+  imageOne.src = allProducts[firstProductIndex].src;
+  imageOne.title = allProducts[firstProductIndex].name;
+  allProducts[firstProductIndex].views++;
 
-  imageTwo.src = allGoats[secondGoatIndex].src;
-  imageTwo.title = allGoats[secondGoatIndex].name;
-  allGoats[secondGoatIndex].views++;
+  imageTwo.src = allProducts[secondProductIndex].src;
+  imageTwo.title = allProducts[secondProductIndex].name;
+  allProducts[secondProductIndex].views++;
 
-  imageThree.src = allGoats[thirdGoatIndex].src;
-  imageThree.title = allGoats[thirdGoatIndex].name;
-  allGoats[thirdGoatIndex].views++;
+  imageThree.src = allProducts[thirdProductIndex].src;
+  imageThree.title = allProducts[thirdProductIndex].name;
+  allProducts[thirdProductIndex].views++;
+
 }
 
-function renderResults(){
+function renderResult() {
   let myList = document.querySelector('ul');
-  for (let i = 0; i < allGoats.length; i++){
+  for (let i = 0; i < allProducts.length; i++) {
     let li = document.createElement('li');
-    li.textContent = `${allGoats[i].name} had ${allGoats[i].views} votes, and was seen ${allGoats[i].clicks} times`;
+    li.textContent = `${allProducts[i].name} had ${allProducts[i].clicks} votes, and was seen ${allProducts[i].views} times`;
     myList.appendChild(li);
   }
 }
 
 function handleClick(event) {
-  if (event.target === myContainer){
+  if (event.target === myContainer) {
     alert('Please click an image and FOLLOW INSTRUCTIONS');
   }
 
   totalClicks++;
-  let goatClicked = event.target.title;
+  let productClicked = event.target.title;
 
-  for (let i = 0; i < allGoats.length; i++){
-    if (goatClicked === allGoats[i].name) {
-      allGoats[i].clicks++;
+  for (let i = 0; i < allProducts.length; i++) {
+    if (productClicked === allProducts[i].name) {
+      allProducts[i].clicks++;
     }
   }
 
-  renderGoats();
+  renderProduct();
   if (totalClicks === clicksAllowed) {
     // REMOVE EVENT LISTENER
     myContainer.removeEventListener('click', handleClick);
@@ -89,15 +117,13 @@ function handleClick(event) {
 
 }
 
-function handleButtonClick(event){ //eslint-disable-line
-
-  if(totalClicks === clicksAllowed){
-    renderResults();
+function handleButtonClick(event) { //eslint-disable-line
+  if (totalClicks === clicksAllowed) {
+    renderResult();
   }
 }
 
-renderGoats();
-
+renderProduct();
 
 myContainer.addEventListener('click', handleClick);
 myButton.addEventListener('click', handleButtonClick);
