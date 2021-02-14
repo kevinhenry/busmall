@@ -2,12 +2,13 @@
 
 // Global Variables
 let totalClicks = 0;
-let clicksAllowed = 15;
+let clicksAllowed = 3;
 let allGoats = [];
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
-let myContainer = document.quarySelector('section');
-let myButton = document.quarySelector('div')
+let imageThree = document.querySelector('section img:nth-child(3)');
+let myContainer = document.querySelector('section');
+let myButton = document.querySelector('div');
 
 function Goat(name, fileExtension = 'jpg') {
   this.name = name;
@@ -35,10 +36,11 @@ function getRandomIndex() {
 function renderGoats() {
   let firstGoatIndex = getRandomIndex();
   let secondGoatIndex = getRandomIndex();
-  // In lab today, I recommend using an array.
-  // maybe name it indexArray
-  // check to see if the index is included in that array or shift? maybe?
-  // pop those results from the array or shift? maybe?
+  let thirdGoatIndex = getRandomIndex();
+  //  in lab today I recommend using an array.
+  // maybe name itindexArray
+  // check to see if the index is included in that array
+  // pop those results from the array or shift?  maybe?
   while (firstGoatIndex === secondGoatIndex) {
     secondGoatIndex = getRandomIndex();
   }
@@ -50,42 +52,46 @@ function renderGoats() {
   imageTwo.src = allGoats[secondGoatIndex].src;
   imageTwo.title = allGoats[secondGoatIndex].name;
   allGoats[secondGoatIndex].views++;
+
+  imageThree.src = allGoats[thirdGoatIndex].src;
+  imageThree.title = allGoats[thirdGoatIndex].name;
+  allGoats[thirdGoatIndex].views++;
 }
 
-function renderResults() {
-  let myList = document.quarySelector('ul');
-  for (let i = 0; i < allGoats.length; i++) {
+function renderResults(){
+  let myList = document.querySelector('ul');
+  for (let i = 0; i < allGoats.length; i++){
     let li = document.createElement('li');
-    li.textcontent = `${allGoats[i].name} had ${allGoats[i].views} vote, and was seen ${allGoats[i].clicks} times`;
+    li.textContent = `${allGoats[i].name} had ${allGoats[i].views} votes, and was seen ${allGoats[i].clicks} times`;
     myList.appendChild(li);
   }
 }
 
 function handleClick(event) {
-  if (event.target === myContainer) {
-    alert('Please click an imaage and FOLLOW INSTRUCTIONS');
+  if (event.target === myContainer){
+    alert('Please click an image and FOLLOW INSTRUCTIONS');
   }
 
-  totalCLicks++;
+  totalClicks++;
   let goatClicked = event.target.title;
 
-  for (let i = 0; i < allGoats.length; i++) {
+  for (let i = 0; i < allGoats.length; i++){
     if (goatClicked === allGoats[i].name) {
-      allGoat[i].clicks++;
+      allGoats[i].clicks++;
     }
   }
 
   renderGoats();
   if (totalClicks === clicksAllowed) {
-    // Remove event listener
+    // REMOVE EVENT LISTENER
     myContainer.removeEventListener('click', handleClick);
   }
 
 }
 
-function handleButtonClick(event) { //eslint-disable-line 
+function handleButtonClick(event){ //eslint-disable-line
 
-  if (totalClicks === clicksAllowed) {
+  if(totalClicks === clicksAllowed){
     renderResults();
   }
 }
@@ -93,5 +99,5 @@ function handleButtonClick(event) { //eslint-disable-line
 renderGoats();
 
 
-myContainer.addEventLister('click', handleClick);
+myContainer.addEventListener('click', handleClick);
 myButton.addEventListener('click', handleButtonClick);
