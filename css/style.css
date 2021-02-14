@@ -1,5 +1,5 @@
 body {
-  background-color: lavender;
+  background-color: white;
   /* background-image: url(file:///Users/kevinhenry/codefellows/201/busmall/img/depositphotos_379961388-stock-illustration-public-city-passenger-buses-isolated.jpg); */
   /* background-repeat: repeat; */
   /* background-position: center center; */
@@ -18,7 +18,7 @@ h3 {
 }
 
 section {
-  background-color: bisque;
+  background-color: whitesmoke;
   width: max-content;
   margin: auto;
 }
@@ -33,7 +33,7 @@ img:hover {
 }
 
 div {
-  background-color: gold;
+  background-color: lightgreen;
   padding: 5px;
   width: max-content;
   text-align: center;
