@@ -45,3 +45,9 @@ div {
 div:Hover {
   cursor: pointer;
 }
+
+#chart {
+  height: 450px;
+  width: 900px;
+  margin: auto;
+}
