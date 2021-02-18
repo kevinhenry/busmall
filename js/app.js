@@ -49,7 +49,7 @@ function getRandomIndex() {
 
 // function renderProducts() {
 function populateIndexArray() {
-  while (indexArray.length < 3) {
+  while (indexArray.length < 6) {
     let randomIndex = getRandomIndex();
     while (!indexArray.includes(randomIndex)) {
       indexArray.push(randomIndex);
@@ -152,16 +152,16 @@ function renderChart() {
       // labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum','chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
       datasets: [{
         label: '# of Views',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
+        data: productViews,
+        backgroundColor: 'rgba(0, 168, 255,1.0)',
+        borderColor: 'rgba(0, 151, 230,1.0)',
         borderWidth: 1
       },
       {
         label: '# of Clicks',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: 'rgba(153, 102, 255, 0.2)',
-        borderColor: 'rgba(153, 102, 255, 1)',
+        data: productClicked,
+        backgroundColor: 'rgba(232, 65, 24,1.0)',
+        borderColor: 'rgba(194, 54, 22,1.0)',
         borderWidth: 1
       }]
     },
