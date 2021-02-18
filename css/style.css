@@ -1,24 +1,44 @@
 body {
-  background-color: white;
-  /* background-image: url(file:///Users/kevinhenry/codefellows/201/busmall/img/depositphotos_379961388-stock-illustration-public-city-passenger-buses-isolated.jpg); */
-  /* background-repeat: repeat; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  background-image: url("../img/bus-vehicles-pattern-background-PMWACG.jpg");
+  background-color: whitesmoke;
+  background-repeat: repeat;
   /* background-position: center center; */
   /* background-size: 100% 100%; */
   /* background-attachment: fixed; */
 }
 
+header {
+  /* background-color: white; */
+  margin-top: 25px;
+  margin-bottom: 25px;
+  /* width:  */
+}
+
+footer {
+  /* background-color: white; */
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 h1 {
+  /* font-family: 'Kaushan Script', cursive; */
   font-size: 3em;
   text-align: center;
+  background-color: white;
+  /* width: fit-content; */
 }
 
 h3 {
   font-size: 1.5em;
   text-align: center;
+  background-color: white;
+  /* width: fit-content; */
 }
 
 section {
-  background-color: whitesmoke;
+  background-color: white;
   width: max-content;
   margin: auto;
 }
@@ -44,4 +64,10 @@ div {
 
 div:Hover {
   cursor: pointer;
+}
+
+#chart {
+  height: 450px;
+  width: 900px;
+  margin: auto;
 }
