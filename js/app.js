@@ -22,32 +22,43 @@ function Product(name, fileExtension = 'jpg') {
   allProducts.push(this);
 }
 
-new Product('bag');
-new Product('banana');
-new Product('bathroom');
-new Product('boots');
-new Product('breakfast');
-new Product('bubblegum');
-new Product('chair');
-new Product('cthulhu');
-new Product('dog-duck');
-new Product('dragon');
-new Product('pen');
-new Product('pet-sweep');
-new Product('scissors');
-new Product('shark');
-new Product('sweep', 'png');
-new Product('tauntaun');
-new Product('unicorn');
-new Product('usb', 'gif');
-new Product('water-can');
-new Product('wine-glass');
+//////////////// Retrieving From Local Storage
+// 1. get the data from local storage using its key
+let retrievedProducts = localStorage.getItem('products');
+
+// 3. use local storage in a way that doesn't BREAk your existing code!
+if (retrievedProducts) {
+  //2. make that data useable again by parsing it
+  let parsedProducts = JSON.parse(retrievedProducts);
+  allProducts = parsedProducts;
+
+} else {
+  new Product('bag');
+  new Product('banana');
+  new Product('bathroom');
+  new Product('boots');
+  new Product('breakfast');
+  new Product('bubblegum');
+  new Product('chair');
+  new Product('cthulhu');
+  new Product('dog-duck');
+  new Product('dragon');
+  new Product('pen');
+  new Product('pet-sweep');
+  new Product('scissors');
+  new Product('shark');
+  new Product('sweep', 'png');
+  new Product('tauntaun');
+  new Product('unicorn');
+  new Product('usb', 'gif');
+  new Product('water-can');
+  new Product('wine-glass');
+}
 
 function getRandomIndex() {
   return Math.floor(Math.random() * allProducts.length);
 }
 
-// function renderProducts() {
 function populateIndexArray() {
   while (indexArray.length < 6) {
     let randomIndex = getRandomIndex();
@@ -62,15 +73,6 @@ function renderProduct() {
   let firstProductIndex = indexArray.pop();
   let secondProductIndex = indexArray.pop();
   let thirdProductIndex = indexArray.pop();
-  // let firstProductIndex = getRandomIndex();
-  // let secondProductIndex = getRandomIndex();
-  // let thirdProductIndex = getRandomIndex();
-  //  in lab today I recommend using an array.
-  // maybe name itindexArray
-  // check to see if the index is included in that array
-  // pop those results from the array or shift?  maybe?
-  // while (firstProductIndex === secondProductIndex === thirdProductIndex) {
-  // thirdProductIndex = getRandomIndex();
 
   imageOne.src = allProducts[firstProductIndex].src;
   imageOne.title = allProducts[firstProductIndex].name;
@@ -83,17 +85,7 @@ function renderProduct() {
   imageThree.src = allProducts[thirdProductIndex].src;
   imageThree.title = allProducts[thirdProductIndex].name;
   allProducts[thirdProductIndex].views++;
-
 }
-
-// function renderResult() {
-//   let myList = document.querySelector('ul');
-//   for (let i = 0; i < allProducts.length; i++) {
-//     let li = document.createElement('li');
-//     li.textContent = `${allProducts[i].name} had ${allProducts[i].clicks} votes, and was seen ${allProducts[i].views} times`;
-//     myList.appendChild(li);
-//   }
-// }
 
 function handleClick(event) {
   if (event.target === myContainer) {
@@ -114,21 +106,14 @@ function handleClick(event) {
     // REMOVE EVENT LISTENER
     myContainer.removeEventListener('click', handleClick);
     renderChart();
+    //////////////// Saving To Local Storage
+    // 1. stringify the data
+    let stringifiedProducts = JSON.stringify(allProducts);
+    // console.log(stringifiedGoats);
+    // 2. Save to Local Storage
+    localStorage.setItem('products', stringifiedProducts);
   }
-
 }
-
-// function handleButtonClick(event) { //eslint-disable-line
-//   if (totalClicks === clicksAllowed) {
-//     renderResult();
-//   }
-// }
-
-// renderProduct();
-// if (totalClicks === clicksAllowed) {
-//   myContainer.removeEventListener('click', handleButtonClick)
-//   renderChart();
-// }
 
 renderProduct();
 
@@ -142,14 +127,13 @@ function renderChart() {
     productClicked.push(allProducts[i].clicks);
   }
 
-  console.log('productNames: ', productNames);
-  console.log('productViews: ', productViews);
-  console.log('productClicked: ', productClicked);
+  // console.log('productNames: ', productNames);
+  // console.log('productViews: ', productViews);
+  // console.log('productClicked: ', productClicked);
   var chartObject = {
     type: 'bar',
     data: {
       labels: productNames,
-      // labels: ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum','chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
       datasets: [{
         label: '# of Views',
         data: productViews,

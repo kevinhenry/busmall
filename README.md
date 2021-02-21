@@ -1,8 +1,13 @@
- LAB - 12
+ LAB - 13
 
 ## Busmall
 
 You’ve been hired by a startup called BusMall, whose product is similar to the SkyMall catalog found in the seatback pockets on airplanes: a catalog of assorted high-markup products provided to a captive audience seeking a mental escape from the drudgery of travel. The difference with BusMall is that instead of their catalog being placed in airplanes, they are placed on local busses while commuting through traffic.
+
+As a user, I would like my data to persistently track totals between page refreshes, so that I can keep track of the aggregate number of votes.
+
+Implement local storage into your current application
+Make sure the data persists across both browser refreshes and resets
 
 ### Author: Kevin Henry
 Collaborated with Tony Regalado, Alexander Williams, and Dion
