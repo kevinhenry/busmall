@@ -10,10 +10,16 @@ body {
 }
 
 header {
+  text-align: center;
   /* background-color: white; */
   margin-top: 25px;
-  margin-bottom: 25px;
-  /* width:  */
+  margin-bottom: 35px;
+  /* display: inline-block; */
+  /* position: center-center; */
+}
+
+main {
+  text-align: center;
 }
 
 footer {
@@ -23,16 +29,25 @@ footer {
 }
 
 h1 {
-  /* font-family: 'Kaushan Script', cursive; */
-  font-size: 3em;
-  text-align: center;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 6em;
+  /* text-align: center; */
+  display: inline-block;
   background-color: white;
   /* width: fit-content; */
 }
 
+h2 {
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 3em;
+  display: inline-block;
+  background-color: white;
+}
+
 h3 {
-  font-size: 1.5em;
-  text-align: center;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2em;
+  display: inline-block;
   background-color: white;
   /* width: fit-content; */
 }
